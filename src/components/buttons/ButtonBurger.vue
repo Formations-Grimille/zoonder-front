@@ -16,29 +16,29 @@ const menuStore = useMenuStore();
   padding: 1em;
   background: none;
   border: none;
-}
 
-.menu-burger span{
-  display: block;
-  width: 30px;
-  height: 3px;
-  background-color: #000;
-}
+  span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: $dark_color;
 
-.menu-burger span::before, .menu-burger span::after{
-  content: '';
-  position: relative;
-  display: block;
-  width: 30px;
-  height: 3px;
-  background-color: #000;
-}
+    &::before, &::after {
+      content: '';
+      position: relative;
+      display: block;
+      width: 30px;
+      height: 3px;
+      background-color: $dark_color;
+    }
 
-.menu-burger span::before {
-  transform: translate3d(0, -8px, 0)
-}
+    &::before {
+      transform: translate3d(0, -8px, 0)
+    }
 
-.menu-burger span::after {
-  transform: translate3d(0, 5px, 0)
+    &::after {
+      transform: translate3d(0, 5px, 0)
+    }
+  }
 }
 </style>
