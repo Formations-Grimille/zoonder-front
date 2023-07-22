@@ -1,7 +1,10 @@
 <template>
   <nav :class="{ opened : menuStore.isOpened }">
     <div class="menu-container">
-      <h4>Menu</h4>
+      <div class="menu-header">
+        <h4>Menu</h4>
+        <ButtonClose class="menu-close-icon" @click="menuStore.closeMenu()"/>
+      </div>
       <ul>
         <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'swipe-page'}"><span>Swipe !</span><IconChevron class="menu-item-icon"/></RouterLink></li>
         <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'recap-page'}"><span>Mon recap</span><IconChevron class="menu-item-icon"/></RouterLink></li>
@@ -14,6 +17,7 @@
 
 <script setup>
 import IconChevron from '@/components/icons/IconChevron.vue';
+import ButtonClose from '@/components/buttons/ButtonClose.vue';
 import { useMenuStore } from '@/stores/menuStore';
 
 const menuStore = useMenuStore();
@@ -35,13 +39,25 @@ nav {
   z-index: 200;
 
   .menu-container {
-    h4 {
-      text-transform: uppercase;
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 2em;
-      background: $primary_gradient;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+
+      h4 {
+        text-transform: uppercase;
+        background: $primary_gradient;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .menu-close-icon {
+        position: relative;
+        top: 2px;
+        transform: scale3d(0.9, 0.9, 1);
+      }
     }
     ul {
       list-style-type: none;
