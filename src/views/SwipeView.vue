@@ -5,8 +5,8 @@
     <div class="profile-image-container">
       <img :src="`https://zoonder.grimille.fr/${profile.picture}`" :alt="`Profile de ${profile.firstname}`">
       <div class="smash-controller">
-        <ButtonSmash class="btn-controller"/>
-        <ButtonPass class="btn-controller"/>
+        <ButtonSmash class="btn-controller" @click="smash"/>
+        <ButtonPass class="btn-controller" @click="pass"/>
       </div>
     </div>
     <div class="profile-details">
@@ -25,7 +25,7 @@
 
 <script setup>
 import { ref, computed, onBeforeMount } from 'vue';
-import { getRandomProfile } from '@/services/api';
+import { getRandomProfile, tryMatch } from '@/services/api';
 import Breadcrumb from '@/components/layout/Breadcrumb.vue';
 import GenderIndicator from '@/components/GenderIndicator.vue';
 import RelationTypeIndicator from '@/components/RelationTypeIndicator.vue';
@@ -38,10 +38,23 @@ const getAgeSuffix = computed(() => {
   return profile.value.age <= 1 ? 'an' : 'ans';
 });
 
-onBeforeMount(() => {
+const retrieveRandomProfile = () => {
   getRandomProfile()
     .then(response => profile.value = response)
     .catch(error => console.error(error));
+}
+
+const smash = () => {
+  retrieveRandomProfile();
+  tryMatch().then(response => console.log(response)); 
+}
+
+const pass = () => {
+  retrieveRandomProfile();
+}
+
+onBeforeMount(() => {
+  retrieveRandomProfile();
 })
 </script>
 
