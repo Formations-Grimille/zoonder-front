@@ -4,6 +4,10 @@
   <div class="profile-container" v-if="profile">
     <div class="profile-image-container">
       <img :src="`https://zoonder.grimille.fr/${profile.picture}`" :alt="`Profile de ${profile.firstname}`">
+      <div class="smash-controller">
+        <ButtonSmash class="btn-controller"/>
+        <ButtonPass class="btn-controller"/>
+      </div>
     </div>
     <div class="profile-details">
       <div class="profile-details-header">
@@ -20,11 +24,13 @@
 </template>
 
 <script setup>
-import Breadcrumb from '@/components/layout/Breadcrumb.vue';
 import { ref, computed, onBeforeMount } from 'vue';
 import { getRandomProfile } from '@/services/api';
+import Breadcrumb from '@/components/layout/Breadcrumb.vue';
 import GenderIndicator from '@/components/GenderIndicator.vue';
 import RelationTypeIndicator from '@/components/RelationTypeIndicator.vue';
+import ButtonSmash from '@/components/buttons/ButtonSmash.vue';
+import ButtonPass from '@/components/buttons/ButtonPass.vue';
 
 const profile = ref();
 
@@ -65,6 +71,20 @@ onBeforeMount(() => {
       background-color: $dark_color;
       transform: rotate(3deg);
       z-index: -1;
+    }
+
+    .smash-controller {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position: absolute;
+      bottom: 0; left: 0;
+      padding: 2em;
+
+      .btn-controller {
+        margin: 0 1em;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
     }
 
     img {
