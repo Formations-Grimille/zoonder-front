@@ -4,6 +4,7 @@
   <main>
     <RouterView/>
   </main>
+  <CrushIndicator :crushsCount="260"/>
   <Overlay/>
 </template>
 
@@ -11,6 +12,7 @@
 import Header from '@/components/layout/Header.vue';
 import Menu from '@/components/layout/Menu.vue';
 import Overlay from '@/components/layout/Overlay.vue';
+import CrushIndicator from '@/components/layout/CrushIndicator.vue';
 
 </script>
 
