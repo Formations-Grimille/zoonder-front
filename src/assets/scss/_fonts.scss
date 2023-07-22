@@ -1,0 +1,22 @@
+@import url(https://fonts.bunny.net/css?family=zen-kaku-gothic-new:400,700,900);
+
+// Typescale.com -> 1.200- Minor Third
+// On choisit le ratio entre la taille des différentes polices d'écritures sur TypeScale si on n'a pas d'UI/UX designer sous la main.
+// Comme ça, on fait moins cochon. 🐷
+$font_size_base: 16px;
+$font_size_tiny: 0.579rem;
+$font_size_extra_small: 0.694rem;
+$font_size_small: 0.833rem;
+$font_size_normal: 1rem;
+$font_size_medium: 1.2rem;
+$font_size_large: 1.44rem;
+$font_size_extra_large: 1.728rem;
+$font_size_huge: 2.074rem;
+$font_size_gigantic: 2.488rem;
+
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: $font_size_base;
+  font-weight:400;
+}
+
