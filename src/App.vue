@@ -4,15 +4,22 @@
   <main>
     <RouterView/>
   </main>
-  <CrushIndicator :crushsCount="260"/>
-  <Overlay/>
+  <CrushIndicator :crushsCount="crushStore.getCrushsCount"/>
+  <Overlay :opened="menuStore.isOpened" @click="menuStore.closeMenu()"/>
+  <OverlayItsAMatch :avatarURL="crushStore.getLastMatchedAvatar" :opened="crushStore.isMatchedOverlayOpened" @close="crushStore.closeOverlay()"/>
 </template>
 
 <script setup>
 import Header from '@/components/layout/Header.vue';
 import Menu from '@/components/layout/Menu.vue';
-import Overlay from '@/components/layout/Overlay.vue';
+import Overlay from '@/components/overlays/Overlay.vue';
 import CrushIndicator from '@/components/layout/CrushIndicator.vue';
+import OverlayItsAMatch from '@/components/overlays/OverlayItsAMatch.vue';
+import { useMenuStore } from '@/stores/menuStore';
+import { useCrushStore } from '@/stores/crushStore';
+
+const menuStore = useMenuStore();
+const crushStore = useCrushStore();
 
 </script>
 

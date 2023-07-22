@@ -3,15 +3,20 @@ import { defineStore } from 'pinia'
 export const useMenuStore = defineStore('menu', {
   state: () => {
     return {
-      isOpened: false
+      opened: false
     }
   },
   actions: {
     closeMenu() {
-      this.isOpened = false;
+      this.opened = false;
     },
     openMenu() {
-      this.isOpened = true;
+      this.opened = true;
+    }
+  },
+  getters: {
+    isOpened(state) {
+      return state.opened;
     }
   }
 })

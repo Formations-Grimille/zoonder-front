@@ -1,16 +1,22 @@
 <template>
-  <div class="overlay" :class="{ opened : menuStore.isOpened }" @click="menuStore.closeMenu()"></div>
+  <div class="overlay" :class="{ opened }"><slot/></div>
 </template>
 
 <script setup>
-import { useMenuStore } from '@/stores/menuStore';
-
-const menuStore = useMenuStore();
+defineProps({
+  opened: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
+})
 
 </script>
 
 <style lang="scss" scoped>
 .overlay {
+  display: grid;
+  place-items: center;
   position: fixed;
   top: 0;
   left: 0;

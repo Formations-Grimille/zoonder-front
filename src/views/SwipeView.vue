@@ -31,7 +31,9 @@ import GenderIndicator from '@/components/GenderIndicator.vue';
 import RelationTypeIndicator from '@/components/RelationTypeIndicator.vue';
 import ButtonSmash from '@/components/buttons/ButtonSmash.vue';
 import ButtonPass from '@/components/buttons/ButtonPass.vue';
+import { useCrushStore } from '@/stores/crushStore';
 
+const crushStore = useCrushStore();
 const profile = ref();
 
 const getAgeSuffix = computed(() => {
@@ -45,8 +47,13 @@ const retrieveRandomProfile = () => {
 }
 
 const smash = () => {
-  retrieveRandomProfile();
-  tryMatch().then(response => console.log(response)); 
+  tryMatch().then(response => {
+    console.log(response.match);
+    if (response.match) {
+      crushStore.triggerMatch(profile.value);
+    }
+    retrieveRandomProfile();
+  }); 
 }
 
 const pass = () => {
