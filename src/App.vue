@@ -1,7 +1,9 @@
 <template>
   <Header/>
   <Menu/>
-  <RouterView/>
+  <main>
+    <RouterView/>
+  </main>
   <Overlay/>
 </template>
 
@@ -23,5 +25,14 @@ body {
   background: $primary_gradient;
   color: $dark_color;
   min-height: 100vh;
+}
+
+main {
+  padding: 1.5em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 </style>
