@@ -18,7 +18,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em;
+  padding: 1.5em;
 
   h3 {
     font-size: $font_size_extra_large;

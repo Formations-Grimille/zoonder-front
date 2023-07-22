@@ -22,5 +22,6 @@ import Overlay from '@/components/layout/Overlay.vue';
 body {
   background: $primary_gradient;
   color: $dark_color;
+  min-height: 100vh;
 }
 </style>

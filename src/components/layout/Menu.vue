@@ -1,14 +1,19 @@
 <template>
   <nav :class="{ opened : menuStore.isOpened }">
-    <ul>
-      <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'swipe-page'}">Swipe !</RouterLink></li>
-      <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'recap-page'}">Mon recap</RouterLink></li>
-      <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'login-page'}">Connexion</RouterLink></li>
-    </ul>
+    <div class="menu-container">
+      <h4>Menu</h4>
+      <ul>
+        <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'swipe-page'}"><span>Swipe !</span><IconChevron class="menu-item-icon"/></RouterLink></li>
+        <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'recap-page'}"><span>Mon recap</span><IconChevron class="menu-item-icon"/></RouterLink></li>
+        <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'login-page'}"><span>Connexion</span><IconChevron class="menu-item-icon"/></RouterLink></li>
+      </ul>
+    </div>
+    <cite class="copyright">Made with love by Mickaël Dhainaut</cite>
   </nav>
 </template>
 
 <script setup>
+import IconChevron from '@/components/icons/IconChevron.vue';
 import { useMenuStore } from '@/stores/menuStore';
 
 const menuStore = useMenuStore();
@@ -17,34 +22,67 @@ const menuStore = useMenuStore();
 <style lang="scss" scoped>
 
 nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   top: 0; right: 0;
   width: 250px;
   height: 100vh;
-  background-color: #ADBF9B;
-  padding: 2em 1em;
+  background: $dark_gradient;
   transform: translate3d(100%, 0, 0);
   transition: transform .3s ease-in-out;
   z-index: 200;
 
-  ul {
-    list-style-type: none;
+  .menu-container {
+    h4 {
+      text-transform: uppercase;
+      padding: 2em;
+      background: $primary_gradient;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    ul {
+      list-style-type: none;
 
-    li {
-      padding: 0.25em 0;
-      display: block;
+      li {
+        display: flex;
+        cursor: pointer;
+        padding: 0 1em;
 
-      a {
-        transform: translate3d(0, 0, 0);
-        transition: transform .3s ease-in-out;
-        font-size: 1.4rem;
-        color: white;
-        text-decoration: none;
-      }
-
-      &:hover {
         a {
-          transform: translate3d(10px, 0, 0);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          font-size: $font_size_normal;
+          color: white;
+          text-decoration: none;
+          padding: 0.5em 1em;
+          transition: background .3s ease-in-out;
+
+          .menu-item-icon {
+            opacity: 0.6;
+          }
+
+          span {
+            transition: margin .3s ease-in-out;
+          }
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.025);
+          a {
+            span {
+              margin-left: 12px;
+            }
+
+            .menu-item-icon {
+              opacity: 0.8;
+            }
+          }
         }
       }
     }
@@ -53,6 +91,42 @@ nav {
   &.opened {
     transform: translate3d(0, 0, 0);
   }
+
+  .copyright {
+    display: inline-block;
+    background: $primary_gradient;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 2em;
+    font-size: $font_size_small;
+    text-align: center;
+  }
 }
+
+.gg-chevron-right-r {
+ box-sizing: border-box;
+ position: relative;
+ display: block;
+ transform: scale(var(--ggs,1));
+ width: 22px;
+ height: 22px;
+ border: 2px solid;
+ border-radius: 4px
+}
+
+.gg-chevron-right-r::after {
+ content: "";
+ display: block;
+ box-sizing: border-box;
+ position: absolute;
+ width: 6px;
+ height: 6px;
+ border-bottom: 2px solid;
+ border-right: 2px solid;
+ transform: rotate(-45deg);
+ left: 5px;
+ top: 6px
+} 
 
 </style>
