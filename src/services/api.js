@@ -13,10 +13,6 @@ export const getRandomProfile = async() => {
   return api('/api/profiles/random');
 }
 
-export const getTotalCrushes = async() => {
-  return api('/api/crushs');
-}
-
 export const tryMatch = async(id) => {
   return api('/api/match', { method: "POST", body: { id}});
 }
