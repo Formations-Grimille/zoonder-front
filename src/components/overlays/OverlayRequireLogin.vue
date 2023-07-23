@@ -2,7 +2,7 @@
   <Overlay :opened="opened">
     <div class="modal-box">
       <h2>Vous n'êtes pas connecté !</h2>
-      <p>Pour commencer à swiper, utilisez votre pseudonyme et le mot de passe "<cite>zoonder</cite>"</p>
+      <p>Pour commencer à swiper, utilisez votre pseudonyme et le mot de passe "<cite>zoonder</cite>". Notez que ceci est un exercice pour mes élèves en formation Vue.js 3. Amusez-vous bien ! Mickaël</p>
       <ButtonPrimary @click="redirect">Compris !</ButtonPrimary>
     </div>
   </Overlay>

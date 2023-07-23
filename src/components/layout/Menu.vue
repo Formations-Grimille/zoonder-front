@@ -8,7 +8,8 @@
       <ul>
         <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'swipe-page'}"><span>Swipe !</span><IconChevron class="menu-item-icon"/></RouterLink></li>
         <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'recap-page'}"><span>Mon recap</span><IconChevron class="menu-item-icon"/></RouterLink></li>
-        <li><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'login-page'}"><span>Connexion</span><IconChevron class="menu-item-icon"/></RouterLink></li>
+        <li v-if="!authStore.isAuthenticated"><RouterLink @click="menuStore.closeMenu()" :to="{ name: 'login-page'}"><span>Connexion</span><IconChevron class="menu-item-icon"/></RouterLink></li>
+        <li v-else><RouterLink @click="logout" :to="{ name: 'login-page'}"><span>Déconnexion</span><IconChevron class="menu-item-icon"/></RouterLink></li>
       </ul>
     </div>
     <cite class="copyright">Made with love by Mickaël Dhainaut</cite>
@@ -19,8 +20,15 @@
 import IconChevron from '@/components/icons/IconChevron.vue';
 import ButtonClose from '@/components/buttons/ButtonClose.vue';
 import { useMenuStore } from '@/stores/menuStore';
+import { useAuthStore } from '@/stores/authStore';
 
+const authStore = useAuthStore();
 const menuStore = useMenuStore();
+
+const logout = () => {
+  authStore.killUserSession();
+  menuStore.closeMenu();
+}
 </script>
 
 <style lang="scss" scoped>
