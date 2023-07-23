@@ -140,4 +140,28 @@ onBeforeMount(() => {
   }
 }
 
+@media screen and (max-width: 749px) {
+  .profile-container {
+    align-items: center;
+    flex-direction: column;
+
+    .profile-image-container {
+      min-width: 200px;
+      width: 300px;
+      height: 500px;
+
+      &::after {
+        min-width: 200px;
+        width: 300px;
+        height: 500px;
+      }
+    }
+
+    .profile-details {
+      margin-left: 0;
+      margin-top: 2em;
+    }
+  }
+}
+
 </style>

@@ -18,6 +18,7 @@ h1 {
   text-transform: uppercase;
   font-style: italic;
   font-weight: bold;
+  overflow: hidden;
   margin: 0.5em 0 1em 0;
 
   &::before, &::after {

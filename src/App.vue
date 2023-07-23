@@ -34,6 +34,8 @@ body {
   background: $primary_gradient;
   color: $dark_color;
   min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 main {

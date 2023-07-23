@@ -17,7 +17,10 @@ export const useCrushStore = defineStore('crushs', {
       this.lastMatchedProfile = profile;
       this.matchedOverlay = true;
       this.crushsCount++;
-      this.matchs.push(profile);
+
+      if(!this.matchs.some(match => match.firstname === profile.firstname)) {
+        this.matchs.push(profile);
+      }
     }
   },
   getters: {

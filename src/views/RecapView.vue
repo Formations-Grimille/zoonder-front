@@ -2,7 +2,7 @@
   <Breadcrumb title="Recap"/>
 
   <h3>Vos crushs</h3>
-  <div class="recap-container">
+  <div class="recap-container" v-if="crushStore.getCrushsCount > 0">
     <div class="crush-row" v-for="crushProfile in crushStore.getMatches">
       <div class="crush-profile">
         <div class="crush-avatar-container">
@@ -10,11 +10,14 @@
         </div>
         <div class="crush-profile-content">
           <span class="firstname">{{ crushProfile.firstname }}</span>
-          <GenderIndicator :gender="crushProfile.gender"/>
+          <GenderIndicator class="gender" :gender="crushProfile.gender"/>
         </div>
       </div>
-      <ButtonRounded><IconComment/></ButtonRounded>
+      <ButtonRounded class="btn-chat"><IconComment/></ButtonRounded>
     </div>
+  </div>
+  <div v-else>
+    <p>Vous n'avez pas encore de crush. C'est un bug, ce n'est pas du tout parce que vous êtes moche !</p>
   </div>
 </template>
 
@@ -71,6 +74,24 @@ h3 {
           font-weight: 700;
           margin-right: 1em;
           width:200px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .recap-container {
+    .crush-row {
+      .crush-profile {
+        .crush-profile-content {
+          .firstname {
+            width: auto;
+          }
+
+          .gender {
+            display: none;
+          }
         }
       }
     }
