@@ -7,6 +7,7 @@
   <CrushIndicator :crushsCount="crushStore.getCrushsCount"/>
   <Overlay :opened="menuStore.isOpened" @click="menuStore.closeMenu()"/>
   <OverlayItsAMatch :avatarURL="crushStore.getLastMatchedAvatar" :opened="crushStore.isMatchedOverlayOpened" @close="crushStore.closeOverlay()"/>
+  <OverlayRequireLogin :opened="authStore.isRequireLoginOverlayOpened" />
 </template>
 
 <script setup>
@@ -15,11 +16,14 @@ import Menu from '@/components/layout/Menu.vue';
 import Overlay from '@/components/overlays/Overlay.vue';
 import CrushIndicator from '@/components/layout/CrushIndicator.vue';
 import OverlayItsAMatch from '@/components/overlays/OverlayItsAMatch.vue';
+import OverlayRequireLogin from '@/components/overlays/OverlayRequireLogin.vue';
 import { useMenuStore } from '@/stores/menuStore';
 import { useCrushStore } from '@/stores/crushStore';
+import { useAuthStore } from '@/stores/authStore';
 
 const menuStore = useMenuStore();
 const crushStore = useCrushStore();
+const authStore = useAuthStore();
 
 </script>
 

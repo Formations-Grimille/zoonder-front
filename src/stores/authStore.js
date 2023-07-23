@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 export const useAuthStore = defineStore('auth', {
   state: () => {
     return {
-      user: undefined
+      user: undefined,
+      requireLoginOverlay: false,
     }
   },
   actions: {
@@ -20,6 +21,9 @@ export const useAuthStore = defineStore('auth', {
     },
     isAuthenticated(state) {
       return state.user !== null & state.user !== undefined;
-    }
+    },
+    isRequireLoginOverlayOpened(state) {
+      return state.requireLoginOverlay;
+    },
   }
 })

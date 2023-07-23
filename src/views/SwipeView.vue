@@ -32,8 +32,10 @@ import RelationTypeIndicator from '@/components/RelationTypeIndicator.vue';
 import ButtonSmash from '@/components/buttons/ButtonSmash.vue';
 import ButtonPass from '@/components/buttons/ButtonPass.vue';
 import { useCrushStore } from '@/stores/crushStore';
+import { useAuthStore } from '@/stores/authStore';
 
 const crushStore = useCrushStore();
+const authStore = useAuthStore();
 const profile = ref();
 
 const getAgeSuffix = computed(() => {
@@ -48,7 +50,6 @@ const retrieveRandomProfile = () => {
 
 const smash = () => {
   tryMatch().then(response => {
-    console.log(response.match);
     if (response.match) {
       crushStore.triggerMatch(profile.value);
     }
@@ -62,6 +63,9 @@ const pass = () => {
 
 onBeforeMount(() => {
   retrieveRandomProfile();
+  if (!authStore.isAuthenticated) {
+    authStore.requireLoginOverlay = true;
+  }
 })
 </script>
 

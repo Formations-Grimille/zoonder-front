@@ -26,9 +26,18 @@ import IconComment from '@/components/icons/IconComment.vue';
 import ButtonRounded from '@/components/buttons/ButtonRounded.vue';
 import Breadcrumb from '@/components/layout/Breadcrumb.vue';
 import GenderIndicator from '@/components/GenderIndicator.vue';
+import { onBeforeMount } from 'vue';
 import { useCrushStore } from '@/stores/crushStore';
+import { useAuthStore } from '@/stores/authStore';
 
+const authStore = useAuthStore();
 const crushStore = useCrushStore();
+
+onBeforeMount(() => {
+  if (!authStore.isAuthenticated) {
+    authStore.requireLoginOverlay = true;
+  }
+})
 </script>
 
 <style lang="scss" scoped>
