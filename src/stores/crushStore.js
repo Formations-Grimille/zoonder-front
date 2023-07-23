@@ -6,6 +6,7 @@ export const useCrushStore = defineStore('crushs', {
       matchedOverlay: false,
       lastMatchedProfile: undefined,
       crushsCount: 0,
+      matchs: []
     }
   },
   actions: {
@@ -13,10 +14,10 @@ export const useCrushStore = defineStore('crushs', {
       this.matchedOverlay = false;
     },
     triggerMatch(profile) {
-      console.log("PROFILE", profile);
       this.lastMatchedProfile = profile;
       this.matchedOverlay = true;
       this.crushsCount++;
+      this.matchs.push(profile);
     }
   },
   getters: {
@@ -31,6 +32,9 @@ export const useCrushStore = defineStore('crushs', {
     },
     getLastMatchedAvatar(state) {
       return state.lastMatchedProfile ? `https://zoonder.grimille.fr/${state.lastMatchedProfile.picture}` : undefined;
+    },
+    getMatches(state) {
+      return state.matchs;
     }
   }
 })
