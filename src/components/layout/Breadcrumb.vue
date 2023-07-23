@@ -40,4 +40,11 @@ h1 {
     transform: translate3d(200%, 0 ,0);
   }
 }
+
+@media screen and (max-width: 749px) {
+  h1 {
+    font-size: $font_size_gigantic;
+  }
+}
+
 </style>
